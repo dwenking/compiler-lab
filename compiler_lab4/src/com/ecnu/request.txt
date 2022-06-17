@@ -1,0 +1,80 @@
+实验文法定义
+
+program -> decls compoundstmt
+decls -> decl ; decls | E
+decl -> int ID = INTNUM | real ID = REALNUM
+stmt -> ifstmt | assgstmt | compoundstmt
+compoundstmt -> { stmts }
+stmts -> stmt stmts | E
+ifstmt -> if ( boolexpr ) then stmt else stmt
+assgstmt -> ID = arithexpr ;
+boolexpr -> arithexpr boolop arithexpr
+boolop -> < | > | <= | >= | ==
+arithexpr -> multexpr arithexprprime
+arithexprprime -> + multexpr arithexprprime | - multexpr arithexprprime | E
+multexpr -> simpleexpr multexprprime
+multexprprime -> * simpleexpr multexprprime | / simpleexpr multexprprime | E
+simpleexpr -> ID | INTNUM | REALNUM | ( arithexpr )
+
+起始符
+program
+
+保留字
+{ }
+if ( ) then else
+ID =
+> < >= <= ==
++ -
+* /
+ID INTNUM REALNUM
+int ID =
+real ID =
+;
+E 是'空'
+ID为标识符，均以小写字母表示，例如：a，b，c.....
+
+INTNUM是正整数
+
+REALNUM是一个正实数（即INTNUM . INTNUM）
+
+分隔方式
+同一行的输入字符之间用一个空格字符分隔，例如：int a = 1 ; int b = 2 ;
+
+错误处理
+本实验需要考虑错误处理，如果程序不正确，它应该输出语义错误信息（与行号一起）并退出，不需要进行错误改正。
+例如：
+
+error message:line 1,realnum can not be translated into int type
+输入
+要求：在同一行中每个输入字符之间用一个空格字符分隔，无其余无关符号，输入输出全部为英文状态下字符。
+
+样例输入：
+int a = 1 ; int b = 2 ; real c = 3.0 ;
+{
+a = a + 1 ;
+b = b * a ;
+if ( a < b ) then c = c / 2 ; else c = c / 4 ;
+}
+输出
+a: 2
+
+b: 4
+
+c: 1.5
+
+输出变量名及其数值，中间相隔一个空格
+
+int a = 3 ; int b = 5.73 ; real c = 3.0 ;
+
+{
+
+a = a + 1 ;
+
+b = b + a ;
+
+if ( a < b ) then c = c / 0 ; else c = c / 4 ;
+
+}
+
+error message:line 1,realnum can not be translated into int type
+error message:line 5,division by zero
