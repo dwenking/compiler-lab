@@ -191,6 +191,7 @@ public class MyScanner {
                     }
                     break;
                 default:
+                    System.out.println("状态出现异常！");
             }
         }
     }
@@ -226,6 +227,7 @@ public class MyScanner {
                     }
                     break;
                 default:
+                    System.out.println("状态出现异常！");
             }
         }
     }

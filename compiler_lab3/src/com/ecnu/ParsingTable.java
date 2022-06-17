@@ -177,9 +177,9 @@ public class ParsingTable {
                 }
 
                 // 如果在构建表项时产生了冲突
-//                if (hasConflict) {
-//                    throw new Exception("该文法不是LL(1)文法");
-//                }
+                if (hasConflict) {
+                    throw new Exception("该文法不是LR(1)文法");
+                }
             }
         }
 
